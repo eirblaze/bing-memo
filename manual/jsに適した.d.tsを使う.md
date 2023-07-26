@@ -76,6 +76,50 @@ console.log(v.length()); // 5
 
 以上が、型定義ファイル `*.d.ts` の基本的な書式と使い方です。型定義ファイルは、JavaScript のライブラリやモジュールの作者が提供することもあれば、別の人が作って公開することもあります。型定義ファイルを探すときは、[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)というリポジトリや[npm](https://www.npmjs.com/)というパッケージマネージャーを利用すると便利です。
 
+## ブラウザ用
+
+```md
+型定義ファイル `*.d.ts` の基本的な書式 (node.js ではなく、 ブラウザで動作する js に向けた書式) を、Javascript初心者にもわかる言葉で、コード例とともに解説してください。
+```
+
+型定義ファイル *.d.ts とは、JavaScriptのコードに対して、型情報を付与するためのファイルです。JavaScriptは動的型付け言語なので、変数や関数の引数や戻り値の型を宣言する必要はありませんが、型定義ファイルを使うと、コードの品質や可読性を向上させることができます。また、型定義ファイルを利用すると、エディタやIDEでのコード補完やエラーチェックなどの機能も強化されます。
+
+型定義ファイルは *.d.ts という拡張子を持ち、JavaScriptのコードと同じディレクトリに置くか、あるいは特定のディレクトリにまとめて置くことができます。型定義ファイルの中では、declare というキーワードを使って、変数や関数やクラスなどの型を宣言します。例えば、以下のようなコードがあるとします。
+
+```js
+// sample.js
+function add(x, y) {
+return x + y;
+}
+
+var result = add(1, 2);
+console.log(result);
+```
+
+このコードに対して、型定義ファイルを作ると以下のようになります。
+
+```ts
+// sample.d.ts
+declare function add(x: number, y: number): number;
+declare var result: number;
+```
+
+型定義ファイルでは、コロン (:) の後に型名を書きます。ここでは、数値型を表す number という型名を使っています。他にも、文字列型を表す string や真偽値型を表す boolean などの基本的な型名があります。また、配列やオブジェクトや関数などの複合的な型も作ることができます。
+
+型定義ファイルを作成したら、JavaScriptのコードから参照する必要があります。ブラウザで動作するJavaScriptでは、script タグの中で *.d.ts ファイルを指定します。例えば、以下のように書きます。
+
+```html
+<script src="sample.d.ts" type="text/typescript"></script>
+<script src="sample.js"></script>
+```
+
+これで、ブラウザでJavaScriptを実行する際に、型定義ファイルが読み込まれて、型情報が反映されます。もし、型に合わない値を代入したり、引数に渡したりした場合は、エラーが発生します。
+
+以上が、型定義ファイル *.d.ts の基本的な書式についての解説です。JavaScript初心者の方にもわかりやすいように説明しましたが、もっと詳しく知りたい方は、以下の参考文献をご覧ください。
+
+- TypeScript Handbook: https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html
+- TypeScript Deep Dive: https://basarat.gitbook.io/typescript/type-system/intro
+
 ## プロジェクトフォルダに合わせる
 
 ```js
@@ -118,7 +162,7 @@ tsc
 // これで、JavaScript のコードに対して TypeScript の型チェックが行われるようになります。型チェックはエディタや IDE でサポートされている場合が多く、コード中の型エラーや補完機能などが利用できるようになります。
 
 // 以上が、js のプロジェクトフォルダに対して、*.d.ts の形で型定義ファイルを作成し、適切な場所に配置する方法です。デザイナーの方にもわかりやすく説明できたでしょうか。もし不明な点や質問がありましたら、お気軽にお尋ねください。
-````
+```
 
 tsconfig.json で、型定義ファイルを集めたフォルダを指定するには、次のようにします。
 
